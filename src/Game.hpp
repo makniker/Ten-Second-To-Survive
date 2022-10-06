@@ -1,21 +1,23 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include "GameState.hpp"
+#include <array>
+
 namespace gm
 {
   class GameApplication
   {
   public:
     GameApplication();
+    ~GameApplication();
     void run();
-    void draw();
 
   private:
-    std::size_t gridSize_;
-    std::size_t wigth_;
-    std::size_t height_;
-    // state
-    //
+    void changeGameState(GameState::State);
+    GameState* currentState_;
+    std::array< GameState*, GameState::Count > gameStates_;
+    bool isRunning_;
   };
 }
 
