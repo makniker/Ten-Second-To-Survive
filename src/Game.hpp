@@ -1,7 +1,8 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-class StateManager;
+#include "GameState.hpp"
+#include <array>
 
 namespace gm
 {
@@ -9,10 +10,14 @@ namespace gm
   {
   public:
     GameApplication();
+    ~GameApplication();
     void run();
 
   private:
-    StateManager *stateManager_;
+    void changeGameState(GameState::State);
+    GameState* currentState_;
+    std::array< GameState*, GameState::Count > gameStates_;
+    bool isRunning_;
   };
 }
 
